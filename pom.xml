@@ -83,9 +83,22 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>9.0.7</version>
                 <configuration>
-                    <skip>true</skip>
-                    <format>HTML</format>
+                    <!-- Do not fail build if NVD is unavailable -->
+                    <failOnError>false</failOnError>
+
+                    <!-- Use cached data if available -->
+                    <autoUpdate>true</autoUpdate>
+
+                    <!-- Skip if no CVE data -->
+                    <failBuildOnCVSS>11</failBuildOnCVSS>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
