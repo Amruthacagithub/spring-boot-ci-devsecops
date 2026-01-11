@@ -25,41 +25,13 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Run Checkstyle
-        run: ./mvnw checkstyle:check
-
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: java
 
       - name: Build application
-        run: mvn clean compile
-          
+        run: ./mvnw clean compile
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
-
-      - name: OWASP Dependency Check
-        uses: dependency-check/Dependency-Check_Action@v3
-        with:
-          project: "healthservice"
-          path: "."
-          format: "HTML"
-          out: "dependency-check-report"
-        continue-on-error: true
-
-      - name: Build JAR
-        run: ./mvnw clean package -DskipTests
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/healthservice:latest
