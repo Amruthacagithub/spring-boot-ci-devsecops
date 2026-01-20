@@ -51,6 +51,10 @@ jobs:
         with:
           languages: java
 
+      # IMPORTANT: Build must happen AFTER init
+      - name: Build application for CodeQL
+        run: ./mvnw clean compile
+
       - name: Analyze with CodeQL
         uses: github/codeql-action/analyze@v3
 
