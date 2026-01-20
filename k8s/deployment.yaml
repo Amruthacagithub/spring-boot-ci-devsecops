@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthservice-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: healthservice
+  template:
+    metadata:
+      labels:
+        app: healthservice
+    spec:
+      containers:
+        - name: healthservice
+          image: amruthaca/healthservice:latest
+          ports:
+            - containerPort: 8080
