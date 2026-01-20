@@ -24,19 +24,16 @@
     </properties>
 
     <dependencies>
-        <!-- Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
 
-        <!-- Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -55,7 +52,6 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.3.1</version>
 
-                <!-- Force compatible Checkstyle -->
                 <dependencies>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
@@ -85,13 +81,10 @@
                 <artifactId>dependency-check-maven</artifactId>
                 <version>9.0.7</version>
                 <configuration>
-                    <!-- Do not fail build if NVD is unavailable -->
                     <failOnError>false</failOnError>
 
-                    <!-- Use cached data if available -->
                     <autoUpdate>true</autoUpdate>
 
-                    <!-- Skip if no CVE data -->
                     <failBuildOnCVSS>11</failBuildOnCVSS>
                 </configuration>
                 <executions>
